@@ -24,9 +24,13 @@ def detect_bounding_box(vid):
 
     corners = [result.getCorner(i) for i in range(4) for result in results] #get corners of apriltag
     
-    if corners:
+    if corners: #draw bounding box
         #print((corners[0].x, corners[0].y))
-        cv2.rectangle(vid, (int(corners[0].x), int(corners[0].y)), (int(corners[2].x), int(corners[2].y)), (0, 255, 0), 4) #draw rectangle
+        #cv2.rectangle(vid, (int(corners[0].x), int(corners[0].y)), (int(corners[2].x), int(corners[2].y)), (0, 255, 0), 4) #draw rectangle
+        cv2.line(vid, (int(corners[0].x), int(corners[0].y)), (int(corners[1].x), int(corners[1].y)), (0, 255, 0), 4)
+        cv2.line(vid, (int(corners[1].x), int(corners[1].y)), (int(corners[2].x), int(corners[2].y)), (0, 255, 0), 4)
+        cv2.line(vid, (int(corners[2].x), int(corners[2].y)), (int(corners[3].x), int(corners[3].y)), (0, 255, 0), 4)
+        cv2.line(vid, (int(corners[3].x), int(corners[3].y)), (int(corners[0].x), int(corners[0].y)), (0, 255, 0), 4)
 
     return results
 
